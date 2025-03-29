@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Tribute</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .fade-in:nth-child(n) {
+            animation-delay: calc(0.3s * var(--delay));
+        }
+        
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .flower {
+            position: absolute;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/3530/3530204.png');
+            background-size: cover;
+            opacity: 0;
+            animation: fall linear infinite;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            color: white;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .container {
+            background: white;
+            color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        
+        .memories-container {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        
+        .carousel {
+            display: flex;
+            animation: slide 10s linear infinite;
+        }
+        
+        .carousel img {
+            width: 150px;
+            height: 150px;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes slide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container fade-in" style="--delay: 1">
+        <h1 class="text-3xl font-bold mb-4">Farewell, Nishma!</h1>
+        <p class="text-lg text-blue-600">We bid farewell to <strong>Nishma</strong> as she embarks on a new journey beyond <strong>IPCS Global</strong>.</p>
+        <p class="text-lg mt-2 text-green-600">Your dedication and contributions have left a lasting impact on our team.</p>
+        <p class="text-lg mt-2 text-red-600">Though we are sad to see you go, we wish you immense success in your future.</p>
+        <p class="text-lg mt-2 text-purple-600">Thank you for everything! Best wishes on your next adventure!</p>
+    </div>
+
+    <h2 class="text-xl font-bold">Memories</h2>
+    <div class="memories-container">
+        <div class="carousel">
+            <img src="Thanus1.jpg" alt="Memory 1">
+            <img src="Thanus2.jpg" alt="Memory 2">
+            <img src="Thanus3.jpg" alt="Memory 3">
+            <img src="Thanus4.jpg" alt="Memory 4">
+        </div>
+    </div>
+
+    <script>
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.classList.add('flower');
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            flower.style.width = Math.random() * 20 + 20 + 'px';
+            flower.style.height = flower.style.width;
+            document.body.appendChild(flower);
+            setTimeout(() => {
+                flower.remove();
+            }, 5000);
+        }
+        setInterval(createFlower, 200);
+    </script>
+</body>
+
+</html>
